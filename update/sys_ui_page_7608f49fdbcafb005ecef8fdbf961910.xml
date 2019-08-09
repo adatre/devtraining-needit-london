@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>homepages</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_58872_needit_pa_ashwin.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<g:requires name="scripts/GlideV2ChartingIncludes.js" includes="true"/>
+	
+<div class="container">
+	<div class = "row">
+		<div class="col-sm-4">
+			<label for="Reports">Reports</label>
+			<select id="Reports" name="Reports">
+			<option value="50fbf6064fa21300874e8020a310c7a3" selected='true'>Active NeedIt Requests by Type</option>
+			<option value="5838f1cf4fa65300874e8020a310c711">NeedIt Requests by Requested for</option>
+			<option value="7eced24a4f621300874e8020a310c7d5">NeedIt Requests by Type</option>
+			</select>
+		</div>
+		<div class="col-sm-4">
+			<label for="Compare with">Compare with</label>
+			<select id="compare_with" name="compare_with">
+			<option value="none" >-- None --</option>
+			<option value="095cf891d7030200eaae68150e61039f" >Open Incidents older than 30 Days - Grouped</option>
+			<option value="11e2935bc0a8016501aba72e1525e6f7">Open Incidents by Priority</option>
+			</select>	
+		</div>	
+		
+	</div>	
+	</div>
+	<div  style ="height:200px;width:200px;" >
+	<div id="report_stuff"></div>
+	</div>    
+     <script>
+		 
+		 var params = {sysparm_report_size: "small", sysparm_field: "category", sysparm_type: "bar", sysparm_table: "asmt_category_result", sysparm_aggregate: "AVG", sysparm_sumfield: "rating"};
+		 var reports = document.getElementById("Reports");
+             reports.addEventListener("change", run);
+		    reports.addEventListener("load", run);
+
+        var cw = document.getElementById("compare_with");
+             cw.addEventListener("change", compare);
+		 
+		 function compare(){
+		    
+		 var found = document.getElementById('report_stuff1');
+		 if(!found){
+		   
+		    var newElement =  document.createElement('div');
+		        newElement.setAttribute('id' , 'report_stuff1');
+		 
+		     var parent = document.getElementById('report_stuff');
+		    parent.appendChild(newElement);
+		 }
+		 	 var report = document.getElementById("compare_with").value;
+        
+		  if(report){
+		  
+		  var div = $j("#report_stuff1");
+                   embedReportById(div, report);
+		     }
+		 
+		 }
+
+         function run(){
+		 var report = document.getElementById("Reports").value;
+console.log('report is ' + report);
+		  
+		  var div = $j("#report_stuff");
+                   embedReportById(div, report);
+		 
+		 }
+		 
+		 
+     </script>
+	
+	
+
+
+
+	
+
+</j:jelly>]]></html>
+        <name>pa_ashwin</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-06-20 07:19:46</sys_created_on>
+        <sys_id>7608f49fdbcafb005ecef8fdbf961910</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>pa_ashwin</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_ui_page_7608f49fdbcafb005ecef8fdbf961910</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-06-20 10:12:20</sys_updated_on>
+    </sys_ui_page>
+</record_update>
